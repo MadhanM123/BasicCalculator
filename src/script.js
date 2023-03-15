@@ -74,9 +74,36 @@ class Calc{
     }
 
     update(){
-        console.log("here")
-        this.currOpTxt.innerText = this.currOp;
-        this.prevOpTxt.innerText = this.prevOp;
+        console.log("updating")
+        this.currOpTxt.innerText = this.#displayNum(this.currOp)
+        if(this.op != null){
+            this.prevOpTxt.innerText = `${this.#displayNum(this.prevOp)} ${this.op}`
+        }
+        else{
+            this.prevOpTxt.innerText = "";
+        }
+        
+    }
+
+    #displayNum(num){
+        const strNum = num.toString();
+        const intDigits = parseFloat(strNum.split(".")[0])
+        const decimalDigits = strNum.split(".")[1]
+        let intDisplay;
+
+        if(isNaN(intDigits)){
+            intDisplay = "";
+        }
+        else{
+            intDisplay = intDigits.toLocaleString("en", {maximumFractionDigits: 0})
+        }
+
+        if(decimalDigits != null){
+            return `${intDisplay}.${decimalDigits}`
+        }
+        else{
+            return `${intDisplay}`
+        }
     }
 
 
