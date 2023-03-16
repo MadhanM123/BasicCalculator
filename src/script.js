@@ -1,6 +1,6 @@
 //Buttons for numbers/operators
 const numBtns = document.querySelectorAll("[data-num]");
-const optBtns = document.querySelectorAll("[data-op]");
+const optBtns = document.querySelectorAll("[data-opt]");
 
 //Buttons for equals,delete,clear
 const eqBtn = document.querySelector("[data-eq]");
@@ -12,7 +12,7 @@ const prevOpdTxt = document.querySelector("[data-prev]");
 const currOpdTxt = document.querySelector("[data-curr]");
 
 //CALCULATOR CLASS
-class Calc{
+class Calculator{
 
     //Saves previous/current operand text elements and clears
     constructor(prevOpdTxt,currOpdTxt){
@@ -104,7 +104,7 @@ class Calc{
 
         //Moves operand and operator up
         if(this.opt != null){
-            this.prevOpdTxt.innerText = `${this.#displayNum(this.prevOpd)} ${this.opt}`;
+            this.prevOpdTxt.innerText = (`${this.#displayNum(this.prevOpd)} ${this.opt}`);
         }
         else{
             this.prevOpdTxt.innerText = "";
@@ -128,10 +128,10 @@ class Calc{
 
         //Digits after decimal
         if(decimalDigits != null){
-            return `${intDisplay}.${decimalDigits}`;
+            return (`${intDisplay}.${decimalDigits}`);
         }
         else{
-            return `${intDisplay}`;
+            return (`${intDisplay}`);
         }
     }
 }
@@ -172,7 +172,7 @@ function init(){
     delBtn.addEventListener("click",delBtnClicked);
 }
 
-//Single instance of Calc
-const calculator = new Calc(prevOpdTxt,currOpdTxt);
+//Single instance of Calculator
+const calculator = new Calculator(prevOpdTxt,currOpdTxt);
 init();
 
