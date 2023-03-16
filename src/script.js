@@ -46,7 +46,7 @@ class Calc{
     }
 
     //Chooses operator
-    chooseOp(opt){
+    chooseOpt(opt){
         console.log("choosing");
         if(this.currOpd == ""){
             return;
@@ -136,32 +136,43 @@ class Calc{
     }
 }
 
-numBtns.forEach(btn => {btn.addEventListener("click", () => {
-    calculator.appendDigit(btn.innerText)
-    calculator.update()
-})});
+//Click Functions
 
-optBtns.forEach(btn => {btn.addEventListener("click", () => {
-    calculator.chooseOp(btn.innerText)
-    calculator.update()
-})});
-
-eqBtn.addEventListener("click", button => {
-    calculator.compute()
-    calculator.update()
+function numBtnClicked(){
+    calculator.appendDigit(this.innerText);
+    calculator.update();
 }
-)
 
-acBtn.addEventListener("click", button => {
-    calculator.clear()
-    calculator.update()
-})
+function optBtnClicked(){
+    calculator.chooseOpt(this.innerText);
+    calculator.update();
+}
 
-delBtn.addEventListener("click", button => {
-    calculator.delete()
-    calculator.update()
-})
+function eqBtnClicked(){
+    calculator.compute();
+    calculator.update();
+}
+
+function acBtnClicked(){
+    calculator.clear();
+    calculator.update();
+}
+
+function delBtnClicked(){
+    calculator.delete();
+    calculator.update();
+}
+
+//Sets listeners
+function init(){
+    numBtns.forEach(numBtn => numBtn.addEventListener("click",numBtnClicked));
+    optBtns.forEach(optBtn => optBtn.addEventListener("click",optBtnClicked));
+    eqBtn.addEventListener("click",eqBtnClicked);
+    acBtn.addEventListener("click",acBtnClicked);
+    delBtn.addEventListener("click",delBtnClicked);
+}
 
 //Single instance of Calc
 const calculator = new Calc(prevOpdTxt,currOpdTxt);
+init();
 
